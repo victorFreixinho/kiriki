@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>655</width>
+    <height>468</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Kiriki</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow{
+	background-color: #c7c7c7;
+}
+QLabel{
+	font-size:18px;
+	font-family:Calibri;
+}</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">#gameTitleLabel{
+	font-family: Algerian;
+	text-align:center;
+}</string>
+   </property>
+   <widget class="QWidget" name="yellowContainer" native="true">
+    <property name="geometry">
+     <rect>
+      <x>199</x>
+      <y>9</y>
+      <width>281</width>
+      <height>401</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#yellowContainer {
+	background-color: #ffc000;
+	padding: 15px 25px;
+	text-align: center;	
+	text-decoration: none;
+	 border: none;
+  	border-radius: 40px;
+}
+</string>
+    </property>
+    <widget class="QLabel" name="gameTitleLabel">
+     <property name="geometry">
+      <rect>
+       <x>3</x>
+       <y>30</y>
+       <width>281</width>
+       <height>66</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#gameTitleLabel{
+	font-size: 60px;
+}</string>
+     </property>
+     <property name="text">
+      <string>Kiriki</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="playBtn">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>240</y>
+       <width>241</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#playBtn {
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 28px;
+  font-family: Calibri;
+  text-align: center;	
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #70ad46;
+  border: none;
+  border-radius: 15px;
+}
+
+#playBtn[enabled=&quot;false&quot;] {
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 28px;
+  font-family: Calibri;
+  text-align: center;	
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #a0a0a0;
+  border: none;
+  border-radius: 15px;
+}
+
+#playBtn:hover {
+background-color: #3e8e41
+}
+
+#playBtn:pressed {
+  background-color: #4CAF50;
+}
+</string>
+     </property>
+     <property name="text">
+      <string>Jogar</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="nameInput">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>141</y>
+       <width>241</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#nameInput {
+  padding: 15px 25px;
+  font-size: 24px;
+  text-align: center;	
+  text-decoration: none;
+  outline: none;
+  border: none;
+  border-radius: 15px;
+
+}</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+     <property name="clearButtonEnabled">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="userInputLabel">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>120</y>
+       <width>211</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#userInputLabel{
+	font-size:18px;
+	font-family:Calibri;
+}</string>
+     </property>
+     <property name="text">
+      <string>UserName</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="mensageLabel">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>310</y>
+       <width>241</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+     <property name="message" stdset="0">
+      <string/>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
