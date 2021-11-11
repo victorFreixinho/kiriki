@@ -18,6 +18,7 @@ public class Server {
     public static final String HEADER_PLAYER_GUESS = "/guess";
     public static final String HEADER_START_ROUND = "/startRound";
     public static final String HEADER_FINISH_GAME = "/finish";
+    public static final String HEADER_EXCLUDE_DICE = "/excludeDice";
 
     private static final int PORT = 5000;
     private static final int MAX_THREADS = 25;
@@ -124,6 +125,17 @@ public class Server {
                     System.out.println("Error Parsing JSON object, to get client guess.");
                     e.printStackTrace();
                 }
+                break;
+            case HEADER_EXCLUDE_DICE:
+                try {
+                    JSONParser parser = new JSONParser();
+                    JSONObject obj = (JSONObject) parser.parse(message);
+                    clientGameMap.get(client.getId()).handleExcludePlayerDice(client, (int) obj.get("value"));
+                } catch (ParseException e) {
+                    System.out.println("Error Parsing JSON object, to get client guess.");
+                    e.printStackTrace();
+                }
+                break;
             default:
                 System.out.println("Incorrect Client Message header.");
                 break;

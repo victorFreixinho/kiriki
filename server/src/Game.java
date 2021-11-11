@@ -39,6 +39,14 @@ public class Game {
         return p ? player1 : player2;
     }
 
+    private List<Integer> sortInitialDices() {
+        List<Integer> arr = new ArrayList<>();
+        for(int i=1; i<=5; i++) {
+            arr.add((int) Math.floor(6*Math.random() + 1));
+        }
+        return arr;
+    }
+
     public void addPlayer(Client client) {
         if(player1 == null && player2 == null) {
             player1 = client;
@@ -60,6 +68,8 @@ public class Game {
         sendGameConfigTo(player2, header, !player1.equals(firstPlayer));
     }
 
+//    /login
+//    {"opponentName": "Foo", "opponentName": 13, "isFirstPlayer": true, "initialDices": [1,2,4,2,3]}
     private void sendGameConfigTo(Client player, String header, boolean isFirstPlayer) {
         boolean isPlayer1 = player.equals(player1);
 
@@ -70,14 +80,6 @@ public class Game {
         jsonObj.put("initialDices", isPlayer1 ? dices1 : dices2);
 
         sendMessage(player, Server.HEADER_GAME_CONFIG, jsonObj.toJSONString(), "initial configs message");
-    }
-
-    private List<Integer> sortInitialDices() {
-        List<Integer> arr = new ArrayList<>();
-        for(int i=1; i<=5; i++) {
-            arr.add((int) Math.floor(6*Math.random() + 1));
-        }
-        return arr;
     }
 
     private int getDicesSum(List<Integer> dices) {
@@ -108,7 +110,6 @@ public class Game {
                     sendStartRoundMessage(!isPlayer1, false);
                 } else {
                     sendWrongGuessMessage(isPlayer1, true);
-                    sendStartRoundMessage(!isPlayer1, true);
                 }
             } else {
                 sendFinishGameMessage(!isPlayer1);
@@ -116,6 +117,8 @@ public class Game {
         }
     }
 
+//    /guess
+//    {"loseDice": true}
     private void sendWrongGuessMessage(boolean isPlayer1, boolean loseDice) {
         JSONObject jsonObj = new JSONObject();
         jsonObj.put("loseDice", loseDice);
@@ -128,9 +131,22 @@ public class Game {
         );
     }
 
+    public void handleExcludePlayerDice(Client player, int value) {
+        boolean isPlayer1 = player1.getId() == player.getId();
+        if(isPlayer1 && dices1.contains(value)) {
+            dices1.remove(value);
+        } else if (!isPlayer1 && dices2.contains(value)) {
+            dices2.remove(value);
+        }
+        sendStartRoundMessage(!isPlayer1, true);
+    }
+
+//    /startRound
+//    {"loseDice": true, "sum": 13}
     private void sendStartRoundMessage(boolean isPlayer1, boolean loseDice) {
         JSONObject jsonObj = new JSONObject();
         jsonObj.put("loseDice", loseDice);
+        jsonObj.put("sum", getDicesSum(isPlayer1 ? dices2 : dices1));
 
         sendMessage(
                 isPlayer1 ? player1 : player2,
@@ -140,6 +156,8 @@ public class Game {
         );
     }
 
+    //    /finish
+    //    {"winner": true}
     private void sendFinishGameMessage(boolean isPlayer1Winner) {
         JSONObject winnerJson = new JSONObject();
         JSONObject loserJson = new JSONObject();
