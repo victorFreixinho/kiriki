@@ -31,10 +31,7 @@ QLabel{
 QLineEdit {
 	font-size:28px;
 	font-family:Calibri;
-    padding: 15px 25px;
   	text-align: center;	
-  	text-decoration: none;
-  	outline: none;
   	border: 1px solid black;
   	border-radius: 10px;
 	
@@ -44,6 +41,12 @@ QLineEdit {
 	font-size:40px;
 }
 
+QPushButton {
+	background-color: #fff;
+  	border: 1px solid black;
+  	border-radius: 4px;
+
+}
 </string>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -75,22 +78,6 @@ QLineEdit {
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="slotC">
-    <property name="geometry">
-     <rect>
-      <x>429</x>
-      <y>336</y>
-      <width>31</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="images/Config.qrc">:/newPrefix/DiceSlot.png</pixmap>
-    </property>
-   </widget>
    <widget class="QLabel" name="playerCup">
     <property name="geometry">
      <rect>
@@ -105,70 +92,6 @@ QLineEdit {
     </property>
     <property name="pixmap">
      <pixmap resource="images/Config.qrc">:/newPrefix/playerCup.png</pixmap>
-    </property>
-   </widget>
-   <widget class="QLabel" name="slotS">
-    <property name="geometry">
-     <rect>
-      <x>429</x>
-      <y>378</y>
-      <width>31</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="images/Config.qrc">:/newPrefix/DiceSlot.png</pixmap>
-    </property>
-   </widget>
-   <widget class="QLabel" name="slotW">
-    <property name="geometry">
-     <rect>
-      <x>383</x>
-      <y>336</y>
-      <width>31</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="images/Config.qrc">:/newPrefix/DiceSlot.png</pixmap>
-    </property>
-   </widget>
-   <widget class="QLabel" name="slotN">
-    <property name="geometry">
-     <rect>
-      <x>429</x>
-      <y>293</y>
-      <width>31</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="images/Config.qrc">:/newPrefix/DiceSlot.png</pixmap>
-    </property>
-   </widget>
-   <widget class="QLabel" name="slotE">
-    <property name="geometry">
-     <rect>
-      <x>475</x>
-      <y>336</y>
-      <width>31</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="images/Config.qrc">:/newPrefix/DiceSlot.png</pixmap>
     </property>
    </widget>
    <widget class="QLabel" name="slotNNumber">
@@ -425,7 +348,16 @@ background-color: #3e8e41
      </rect>
     </property>
     <property name="cursor">
-     <cursorShape>WaitCursor</cursorShape>
+     <cursorShape>IBeamCursor</cursorShape>
+    </property>
+    <property name="inputMask">
+     <string>0</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLineEdit" name="input1">
@@ -438,7 +370,16 @@ background-color: #3e8e41
      </rect>
     </property>
     <property name="cursor">
-     <cursorShape>WaitCursor</cursorShape>
+     <cursorShape>IBeamCursor</cursorShape>
+    </property>
+    <property name="inputMask">
+     <string>0</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLineEdit" name="input2">
@@ -451,7 +392,16 @@ background-color: #3e8e41
      </rect>
     </property>
     <property name="cursor">
-     <cursorShape>WaitCursor</cursorShape>
+     <cursorShape>IBeamCursor</cursorShape>
+    </property>
+    <property name="inputMask">
+     <string>0</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLineEdit" name="input3">
@@ -464,7 +414,16 @@ background-color: #3e8e41
      </rect>
     </property>
     <property name="cursor">
-     <cursorShape>WaitCursor</cursorShape>
+     <cursorShape>IBeamCursor</cursorShape>
+    </property>
+    <property name="inputMask">
+     <string>0</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLineEdit" name="input4">
@@ -477,7 +436,16 @@ background-color: #3e8e41
      </rect>
     </property>
     <property name="cursor">
-     <cursorShape>WaitCursor</cursorShape>
+     <cursorShape>IBeamCursor</cursorShape>
+    </property>
+    <property name="inputMask">
+     <string>0</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QWidget" name="sumContainer" native="true">
@@ -778,18 +746,128 @@ background-color: #3e8e41
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
+   <widget class="QPushButton" name="slotN">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>428</x>
+      <y>299</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#slot {
+	background-color: #fff;
+  	border: 1px solid black;
+  	border-radius: 4px;
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="slotE">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>474</x>
+      <y>341</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#slot {
+	background-color: #fff;
+  	border: 1px solid black;
+  	border-radius: 4px;
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="slotS">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>428</x>
+      <y>383</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#slot {
+	background-color: #fff;
+  	border: 1px solid black;
+  	border-radius: 4px;
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="slotW">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>382</x>
+      <y>341</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#slot {
+	background-color: #fff;
+  	border: 1px solid black;
+  	border-radius: 4px;
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="slotC">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>428</x>
+      <y>341</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#slot {
+	background-color: #fff;
+  	border: 1px solid black;
+  	border-radius: 4px;
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
    <zorder>gameNameLabel</zorder>
    <zorder>playerCup</zorder>
-   <zorder>slotS</zorder>
-   <zorder>slotW</zorder>
-   <zorder>slotN</zorder>
-   <zorder>slotE</zorder>
-   <zorder>slotC</zorder>
-   <zorder>slotNNumber</zorder>
-   <zorder>slotENumber</zorder>
-   <zorder>slotWNumber</zorder>
-   <zorder>slotCNumber</zorder>
-   <zorder>slotSNumber</zorder>
    <zorder>userNameLabel</zorder>
    <zorder>opponentCup</zorder>
    <zorder>opponentNameLabel</zorder>
@@ -812,6 +890,16 @@ background-color: #3e8e41
    <zorder>opponentInputContainer3</zorder>
    <zorder>opponentInputContainer4</zorder>
    <zorder>sumTitleLabel_2</zorder>
+   <zorder>slotN</zorder>
+   <zorder>slotE</zorder>
+   <zorder>slotS</zorder>
+   <zorder>slotW</zorder>
+   <zorder>slotC</zorder>
+   <zorder>slotSNumber</zorder>
+   <zorder>slotWNumber</zorder>
+   <zorder>slotCNumber</zorder>
+   <zorder>slotENumber</zorder>
+   <zorder>slotNNumber</zorder>
   </widget>
  </widget>
  <resources>

@@ -30,10 +30,7 @@ class Ui_MainWindow(object):
 "QLineEdit {\n"
 "    font-size:28px;\n"
 "    font-family:Calibri;\n"
-"    padding: 15px 25px;\n"
 "      text-align: center;    \n"
-"      text-decoration: none;\n"
-"      outline: none;\n"
 "      border: 1px solid black;\n"
 "      border-radius: 10px;\n"
 "    \n"
@@ -43,6 +40,12 @@ class Ui_MainWindow(object):
 "    font-size:40px;\n"
 "}\n"
 "\n"
+"QPushButton {\n"
+"    background-color: #fff;\n"
+"      border: 1px solid black;\n"
+"      border-radius: 4px;\n"
+"\n"
+"}\n"
 "")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -58,36 +61,11 @@ class Ui_MainWindow(object):
 "}")
         self.gameNameLabel.setAlignment(QtCore.Qt.AlignCenter)
         self.gameNameLabel.setObjectName("gameNameLabel")
-        self.slotC = QtWidgets.QLabel(self.centralwidget)
-        self.slotC.setGeometry(QtCore.QRect(429, 336, 31, 41))
-        self.slotC.setText("")
-        self.slotC.setPixmap(QtGui.QPixmap(":/newPrefix/DiceSlot.png"))
-        self.slotC.setObjectName("slotC")
         self.playerCup = QtWidgets.QLabel(self.centralwidget)
         self.playerCup.setGeometry(QtCore.QRect(373, 288, 141, 133))
         self.playerCup.setText("")
         self.playerCup.setPixmap(QtGui.QPixmap(":/newPrefix/playerCup.png"))
         self.playerCup.setObjectName("playerCup")
-        self.slotS = QtWidgets.QLabel(self.centralwidget)
-        self.slotS.setGeometry(QtCore.QRect(429, 378, 31, 41))
-        self.slotS.setText("")
-        self.slotS.setPixmap(QtGui.QPixmap(":/newPrefix/DiceSlot.png"))
-        self.slotS.setObjectName("slotS")
-        self.slotW = QtWidgets.QLabel(self.centralwidget)
-        self.slotW.setGeometry(QtCore.QRect(383, 336, 31, 41))
-        self.slotW.setText("")
-        self.slotW.setPixmap(QtGui.QPixmap(":/newPrefix/DiceSlot.png"))
-        self.slotW.setObjectName("slotW")
-        self.slotN = QtWidgets.QLabel(self.centralwidget)
-        self.slotN.setGeometry(QtCore.QRect(429, 293, 31, 41))
-        self.slotN.setText("")
-        self.slotN.setPixmap(QtGui.QPixmap(":/newPrefix/DiceSlot.png"))
-        self.slotN.setObjectName("slotN")
-        self.slotE = QtWidgets.QLabel(self.centralwidget)
-        self.slotE.setGeometry(QtCore.QRect(475, 336, 31, 41))
-        self.slotE.setText("")
-        self.slotE.setPixmap(QtGui.QPixmap(":/newPrefix/DiceSlot.png"))
-        self.slotE.setObjectName("slotE")
         self.slotNNumber = QtWidgets.QLabel(self.centralwidget)
         self.slotNNumber.setGeometry(QtCore.QRect(440, 306, 16, 16))
         self.slotNNumber.setText("")
@@ -192,23 +170,33 @@ class Ui_MainWindow(object):
         self.sendBtn.setObjectName("sendBtn")
         self.input0 = QtWidgets.QLineEdit(self.centralwidget)
         self.input0.setGeometry(QtCore.QRect(41, 314, 45, 80))
-        self.input0.setCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
+        self.input0.setCursor(QtGui.QCursor(QtCore.Qt.IBeamCursor))
+        self.input0.setText("")
+        self.input0.setAlignment(QtCore.Qt.AlignCenter)
         self.input0.setObjectName("input0")
         self.input1 = QtWidgets.QLineEdit(self.centralwidget)
         self.input1.setGeometry(QtCore.QRect(105, 314, 45, 80))
-        self.input1.setCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
+        self.input1.setCursor(QtGui.QCursor(QtCore.Qt.IBeamCursor))
+        self.input1.setText("")
+        self.input1.setAlignment(QtCore.Qt.AlignCenter)
         self.input1.setObjectName("input1")
         self.input2 = QtWidgets.QLineEdit(self.centralwidget)
         self.input2.setGeometry(QtCore.QRect(169, 314, 45, 80))
-        self.input2.setCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
+        self.input2.setCursor(QtGui.QCursor(QtCore.Qt.IBeamCursor))
+        self.input2.setText("")
+        self.input2.setAlignment(QtCore.Qt.AlignCenter)
         self.input2.setObjectName("input2")
         self.input3 = QtWidgets.QLineEdit(self.centralwidget)
         self.input3.setGeometry(QtCore.QRect(233, 314, 45, 80))
-        self.input3.setCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
+        self.input3.setCursor(QtGui.QCursor(QtCore.Qt.IBeamCursor))
+        self.input3.setText("")
+        self.input3.setAlignment(QtCore.Qt.AlignCenter)
         self.input3.setObjectName("input3")
         self.input4 = QtWidgets.QLineEdit(self.centralwidget)
         self.input4.setGeometry(QtCore.QRect(297, 314, 45, 80))
-        self.input4.setCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
+        self.input4.setCursor(QtGui.QCursor(QtCore.Qt.IBeamCursor))
+        self.input4.setText("")
+        self.input4.setAlignment(QtCore.Qt.AlignCenter)
         self.input4.setObjectName("input4")
         self.sumContainer = QtWidgets.QWidget(self.centralwidget)
         self.sumContainer.setGeometry(QtCore.QRect(100, 90, 201, 71))
@@ -330,18 +318,63 @@ class Ui_MainWindow(object):
         self.sumTitleLabel_2.setGeometry(QtCore.QRect(560, 40, 281, 41))
         self.sumTitleLabel_2.setAlignment(QtCore.Qt.AlignCenter)
         self.sumTitleLabel_2.setObjectName("sumTitleLabel_2")
+        self.slotN = QtWidgets.QPushButton(self.centralwidget)
+        self.slotN.setEnabled(False)
+        self.slotN.setGeometry(QtCore.QRect(428, 299, 31, 31))
+        self.slotN.setStyleSheet("#slot {\n"
+"    background-color: #fff;\n"
+"      border: 1px solid black;\n"
+"      border-radius: 4px;\n"
+"}\n"
+"")
+        self.slotN.setText("")
+        self.slotN.setObjectName("slotN")
+        self.slotE = QtWidgets.QPushButton(self.centralwidget)
+        self.slotE.setEnabled(False)
+        self.slotE.setGeometry(QtCore.QRect(474, 341, 31, 31))
+        self.slotE.setStyleSheet("#slot {\n"
+"    background-color: #fff;\n"
+"      border: 1px solid black;\n"
+"      border-radius: 4px;\n"
+"}\n"
+"")
+        self.slotE.setText("")
+        self.slotE.setObjectName("slotE")
+        self.slotS = QtWidgets.QPushButton(self.centralwidget)
+        self.slotS.setEnabled(False)
+        self.slotS.setGeometry(QtCore.QRect(428, 383, 31, 31))
+        self.slotS.setStyleSheet("#slot {\n"
+"    background-color: #fff;\n"
+"      border: 1px solid black;\n"
+"      border-radius: 4px;\n"
+"}\n"
+"")
+        self.slotS.setText("")
+        self.slotS.setObjectName("slotS")
+        self.slotW = QtWidgets.QPushButton(self.centralwidget)
+        self.slotW.setEnabled(False)
+        self.slotW.setGeometry(QtCore.QRect(382, 341, 31, 31))
+        self.slotW.setStyleSheet("#slot {\n"
+"    background-color: #fff;\n"
+"      border: 1px solid black;\n"
+"      border-radius: 4px;\n"
+"}\n"
+"")
+        self.slotW.setText("")
+        self.slotW.setObjectName("slotW")
+        self.slotC = QtWidgets.QPushButton(self.centralwidget)
+        self.slotC.setEnabled(False)
+        self.slotC.setGeometry(QtCore.QRect(428, 341, 31, 31))
+        self.slotC.setStyleSheet("#slot {\n"
+"    background-color: #fff;\n"
+"      border: 1px solid black;\n"
+"      border-radius: 4px;\n"
+"}\n"
+"")
+        self.slotC.setText("")
+        self.slotC.setObjectName("slotC")
         self.gameNameLabel.raise_()
         self.playerCup.raise_()
-        self.slotS.raise_()
-        self.slotW.raise_()
-        self.slotN.raise_()
-        self.slotE.raise_()
-        self.slotC.raise_()
-        self.slotNNumber.raise_()
-        self.slotENumber.raise_()
-        self.slotWNumber.raise_()
-        self.slotCNumber.raise_()
-        self.slotSNumber.raise_()
         self.userNameLabel.raise_()
         self.opponentCup.raise_()
         self.opponentNameLabel.raise_()
@@ -364,6 +397,16 @@ class Ui_MainWindow(object):
         self.opponentInputContainer3.raise_()
         self.opponentInputContainer4.raise_()
         self.sumTitleLabel_2.raise_()
+        self.slotN.raise_()
+        self.slotE.raise_()
+        self.slotS.raise_()
+        self.slotW.raise_()
+        self.slotC.raise_()
+        self.slotSNumber.raise_()
+        self.slotWNumber.raise_()
+        self.slotCNumber.raise_()
+        self.slotENumber.raise_()
+        self.slotNNumber.raise_()
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -376,6 +419,11 @@ class Ui_MainWindow(object):
         self.sumTitleLabel.setText(_translate("MainWindow", "Soma"))
         self.gessTitleLabel.setText(_translate("MainWindow", "Aposta"))
         self.sendBtn.setText(_translate("MainWindow", "ENVIAR"))
+        self.input0.setInputMask(_translate("MainWindow", "0"))
+        self.input1.setInputMask(_translate("MainWindow", "0"))
+        self.input2.setInputMask(_translate("MainWindow", "0"))
+        self.input3.setInputMask(_translate("MainWindow", "0"))
+        self.input4.setInputMask(_translate("MainWindow", "0"))
         self.msgTitle.setText(_translate("MainWindow", "Mensagens"))
         self.sumTitleLabel_2.setText(_translate("MainWindow", "Última Aposta"))
-from src.GUI.images import Config_rc
+from .images import Config_rc
