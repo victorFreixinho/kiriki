@@ -18,19 +18,20 @@ class ListenThread(Thread):
         while True:
             response = self.socket.listen()
             print(response)
-            header, payloadJson, _ = response.split("\r\n")
+            header, payloadJson, rest = response.split("\r\n",2)
             payload = json.loads(payloadJson)
             if header == "/login":
                 opponentSum = payload['opponentSum']
+                print(opponentSum)
                 opponentName = payload['opponentName']
                 isFirstPlayer = payload['isFirstPlayer']
                 initialDices = payload['initialDices']
-                gameWindow.setInitialSettings(opponentSum, opponentName, isFirstPlayer, initialDices)
+                gameWindow.setInitialSettings(int(opponentSum), opponentName, isFirstPlayer, initialDices)
                 widget.setCurrentIndex(widget.currentIndex()+1)
             elif header == "/startRound":
                 loseDice=payload['loseDice']
                 sum=payload['sum']
-                gameWindow.startPlayerRound( loseDice, sum)
+                gameWindow.startPlayerRound(loseDice, sum)
             elif header == "/guess":
                 loseDice = payload['loseDice']
                 if loseDice:
@@ -71,21 +72,22 @@ class GameWindow(QMainWindow, GameUiWindow):
         self.socket = socket
         self.sendBtn.setEnabled(False)
         self.sendBtn.clicked.connect(self.sendGuess)
-        self.slotN.clicked.connect(self.deleteDice(self.slotN, self.slotNNumber))
-        self.slotE.clicked.connect(self.deleteDice(self.slotE, self.slotENumber))
-        self.slotS.clicked.connect(self.deleteDice(self.slotS, self.slotSNumber))
-        self.slotW.clicked.connect(self.deleteDice(self.slotW, self.slotWNumber))
-        self.slotC.clicked.connect(self.deleteDice(self.slotC, self.slotCNumber))
+        self.slotN.clicked.connect(lambda : self.deleteDice(self.slotN, self.slotNNumber))
+        self.slotE.clicked.connect(lambda : self.deleteDice(self.slotE, self.slotENumber))
+        self.slotS.clicked.connect(lambda : self.deleteDice(self.slotS, self.slotSNumber))
+        self.slotW.clicked.connect(lambda : self.deleteDice(self.slotW, self.slotWNumber))
+        self.slotC.clicked.connect(lambda : self.deleteDice(self.slotC, self.slotCNumber))
+        self.inputs=[self.input0,self.input1,self.input2,self.input3,self.input4]
 
 
     def getDicePictureLocation(self, number: int):
         diceLocationByNumber = {
-            1:".\src\GUI\images\Dice1.png",
-            2:".\src\GUI\images\Dice2.png",
-            3:".\src\GUI\images\Dice3.png",
-            4:".\src\GUI\images\Dice4.png",
-            5:".\src\GUI\images\Dice5.png",
-            6:".\src\GUI\images\Dice6.png",
+            1:".\GUI\images\Dice1.png",
+            2:".\GUI\images\Dice2.png",
+            3:".\GUI\images\Dice3.png",
+            4:".\GUI\images\Dice4.png",
+            5:".\GUI\images\Dice5.png",
+            6:".\GUI\images\Dice6.png",
         }
         return diceLocationByNumber[number]
 
@@ -94,39 +96,53 @@ class GameWindow(QMainWindow, GameUiWindow):
 
     def setInitialSettings(self, opponentSum:int, opponentName:str, isFirstPlayer:bool, initialDices:list):
         self.opponentCurrentDiceNumberLabel.setText("5")
+        print(str(opponentSum))
         self.sumValueLabel.setText(str(opponentSum))
         self.opponentNameLabel.setText(opponentName)
         dices = [self.slotCNumber, self.slotENumber, self.slotNNumber, self.slotSNumber, self.slotWNumber]
         for i in range(5):
             dices[i].setPixmap(QPixmap(self.getDicePictureLocation(initialDices[i])))
-            dices[i].value = initialDices[i]
+            dices[i].setProperty('value', str(initialDices[i]))
         if isFirstPlayer:
             self.startPlayerRound()
+        else:
+            self.msgLabel.setText("Aguarde a vez do outro jogador.")
 
 
-    def startPlayerRound(self,**kwargs):
+    def startPlayerRound(self, loseDice=None,sum=None):
+        self.msgLabel.setText("Agora é a sua vez de adivinhar.")
         self.sendBtn.setEnabled(True)
-        self.sumValueLabel.setText(str(kwargs.get('sum')))
-        if kwargs.get('loseDice'):
-            newAmount=int(self.opponentCurrentDiceNumberLabel.text())-1
+        if sum:
+            self.sumValueLabel.setText(str(sum))
+        if loseDice:
+            newAmount=str(int(self.opponentCurrentDiceNumberLabel.text())-1)
             self.opponentCurrentDiceNumberLabel.setText(newAmount)
+            self.inputs[int(newAmount)].setEnabled(False)
+            self.inputs[int(newAmount)].setVisible(False)
+            self.inputs.pop()
 
 
     def sendGuess(self):
-        guessInputs=[
-            self.input0.text(),
-            self.input1.text(),
-            self.input2.text(),
-            self.input3.text(),
-            self.input4.text(),
-        ]
-        for i in range(5):
-            if(len(guessInputs[i])==0 or int(guessInputs[i])<1 or int(guessInputs[i])>6):
+        if len(self.inputs)==0:
+            self.msgLabel.setText("Prencha todas as caixas de entrada.")
+            return
+
+        for el in self.inputs:
+            if not el:
+                self.msgLabel.setText("Prencha todas as caixas de entrada.")
+                return
+
+        guessInputs=[int(el.text()) if el else -1 for el in self.inputs]
+        self.sendBtn.setEnabled(False)
+        for i in range(len(guessInputs)):
+            if(guessInputs[i]==0 or guessInputs[i]<1 or guessInputs[i]>6):
                 self.msgLabel.setText("Digite apenas números entre 1 e 6")
-            else:
-                routes = Routes()
-                msg = routes.formatGuessing(guessInputs)
-                self.socket.dispatch(msg)
+                return
+
+        self.msgLabel.setText("Aguarde a vez do outro jogador.")
+        routes = Routes()
+        msg = routes.formatGuessing(guessInputs)
+        self.socket.dispatch(msg)
 
     def selectDiceToDelete(self):
         self.slotN.setEnabled(True)
@@ -142,10 +158,11 @@ class GameWindow(QMainWindow, GameUiWindow):
         self.slotS.setEnabled(False)
         self.slotW.setEnabled(False)
         self.slotC.setEnabled(False)
+        self.msgLabel.setText("Aguarde a vez do outro jogador.")
         routes = Routes()
         label.setVisible(False)
         btn.setVisible(False)
-        msg = routes.formatDiceDeletion(label.value)
+        msg = routes.formatDiceDeletion(int(label.property('value')))
         self.socket.dispatch(msg)
 
     def endMatch(self, win:bool):

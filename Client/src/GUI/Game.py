@@ -67,27 +67,37 @@ class Ui_MainWindow(object):
         self.playerCup.setPixmap(QtGui.QPixmap(":/newPrefix/playerCup.png"))
         self.playerCup.setObjectName("playerCup")
         self.slotNNumber = QtWidgets.QLabel(self.centralwidget)
-        self.slotNNumber.setGeometry(QtCore.QRect(440, 306, 16, 16))
+        self.slotNNumber.setGeometry(QtCore.QRect(436, 307, 16, 16))
         self.slotNNumber.setText("")
+        self.slotNNumber.setAlignment(QtCore.Qt.AlignCenter)
+        self.slotNNumber.setProperty("value", "")
         self.slotNNumber.setObjectName("slotNNumber")
         self.slotENumber = QtWidgets.QLabel(self.centralwidget)
-        self.slotENumber.setGeometry(QtCore.QRect(486, 348, 16, 16))
+        self.slotENumber.setGeometry(QtCore.QRect(482, 349, 16, 16))
         self.slotENumber.setText("")
+        self.slotENumber.setAlignment(QtCore.Qt.AlignCenter)
+        self.slotENumber.setProperty("value", "")
         self.slotENumber.setObjectName("slotENumber")
         self.slotWNumber = QtWidgets.QLabel(self.centralwidget)
-        self.slotWNumber.setGeometry(QtCore.QRect(394, 348, 16, 16))
+        self.slotWNumber.setGeometry(QtCore.QRect(390, 349, 16, 16))
         self.slotWNumber.setText("")
+        self.slotWNumber.setAlignment(QtCore.Qt.AlignCenter)
+        self.slotWNumber.setProperty("value", "")
         self.slotWNumber.setObjectName("slotWNumber")
         self.slotCNumber = QtWidgets.QLabel(self.centralwidget)
-        self.slotCNumber.setGeometry(QtCore.QRect(440, 349, 16, 16))
+        self.slotCNumber.setGeometry(QtCore.QRect(436, 349, 16, 16))
         self.slotCNumber.setText("")
+        self.slotCNumber.setAlignment(QtCore.Qt.AlignCenter)
+        self.slotCNumber.setProperty("value", "")
         self.slotCNumber.setObjectName("slotCNumber")
         self.slotSNumber = QtWidgets.QLabel(self.centralwidget)
-        self.slotSNumber.setGeometry(QtCore.QRect(440, 390, 16, 16))
+        self.slotSNumber.setGeometry(QtCore.QRect(436, 391, 16, 16))
         self.slotSNumber.setText("")
+        self.slotSNumber.setAlignment(QtCore.Qt.AlignCenter)
+        self.slotSNumber.setProperty("value", "")
         self.slotSNumber.setObjectName("slotSNumber")
         self.userNameLabel = QtWidgets.QLabel(self.centralwidget)
-        self.userNameLabel.setGeometry(QtCore.QRect(310, 430, 271, 31))
+        self.userNameLabel.setGeometry(QtCore.QRect(320, 430, 251, 31))
         self.userNameLabel.setText("")
         self.userNameLabel.setAlignment(QtCore.Qt.AlignCenter)
         self.userNameLabel.setObjectName("userNameLabel")
@@ -123,6 +133,7 @@ class Ui_MainWindow(object):
         self.gessTitleLabel.setAlignment(QtCore.Qt.AlignCenter)
         self.gessTitleLabel.setObjectName("gessTitleLabel")
         self.sendBtn = QtWidgets.QPushButton(self.centralwidget)
+        self.sendBtn.setEnabled(True)
         self.sendBtn.setGeometry(QtCore.QRect(40, 412, 301, 61))
         font = QtGui.QFont()
         font.setFamily("Calibri")
@@ -215,11 +226,11 @@ class Ui_MainWindow(object):
         self.sumValueLabel.setAlignment(QtCore.Qt.AlignCenter)
         self.sumValueLabel.setObjectName("sumValueLabel")
         self.msgTitle = QtWidgets.QLabel(self.centralwidget)
-        self.msgTitle.setGeometry(QtCore.QRect(560, 233, 331, 41))
+        self.msgTitle.setGeometry(QtCore.QRect(560, 153, 331, 41))
         self.msgTitle.setAlignment(QtCore.Qt.AlignCenter)
         self.msgTitle.setObjectName("msgTitle")
         self.msgContainer = QtWidgets.QWidget(self.centralwidget)
-        self.msgContainer.setGeometry(QtCore.QRect(560, 270, 331, 151))
+        self.msgContainer.setGeometry(QtCore.QRect(560, 190, 331, 151))
         self.msgContainer.setStyleSheet("#msgContainer {\n"
 "    background-color: #fff;\n"
 "    padding: 15px 25px;\n"
@@ -230,97 +241,16 @@ class Ui_MainWindow(object):
         self.msgContainer.setObjectName("msgContainer")
         self.msgLabel = QtWidgets.QLabel(self.msgContainer)
         self.msgLabel.setGeometry(QtCore.QRect(10, 10, 321, 141))
-        self.msgLabel.setStyleSheet("")
+        self.msgLabel.setStyleSheet("#msgLabel{\n"
+"    font-size: 14px\n"
+"}")
         self.msgLabel.setText("")
         self.msgLabel.setAlignment(QtCore.Qt.AlignCenter)
         self.msgLabel.setObjectName("msgLabel")
-        self.opponentInputContainer0 = QtWidgets.QWidget(self.centralwidget)
-        self.opponentInputContainer0.setGeometry(QtCore.QRect(560, 85, 45, 80))
-        self.opponentInputContainer0.setStyleSheet("#opponentInputContainer0{\n"
-"    background-color: #fff;\n"
-"    padding: 15px 25px;\n"
-"      border: 1px solid black;\n"
-"      border-radius: 10px;\n"
-"}\n"
-"")
-        self.opponentInputContainer0.setObjectName("opponentInputContainer0")
-        self.opponentInput0Label = QtWidgets.QLabel(self.opponentInputContainer0)
-        self.opponentInput0Label.setGeometry(QtCore.QRect(2, 0, 41, 81))
-        self.opponentInput0Label.setStyleSheet("")
-        self.opponentInput0Label.setText("")
-        self.opponentInput0Label.setAlignment(QtCore.Qt.AlignCenter)
-        self.opponentInput0Label.setObjectName("opponentInput0Label")
-        self.opponentInputContainer1 = QtWidgets.QWidget(self.centralwidget)
-        self.opponentInputContainer1.setGeometry(QtCore.QRect(620, 85, 45, 80))
-        self.opponentInputContainer1.setStyleSheet("#opponentInputContainer1{\n"
-"    background-color: #fff;\n"
-"    padding: 15px 25px;\n"
-"      border: 1px solid black;\n"
-"      border-radius: 10px;\n"
-"}\n"
-"")
-        self.opponentInputContainer1.setObjectName("opponentInputContainer1")
-        self.opponentInput1Label = QtWidgets.QLabel(self.opponentInputContainer1)
-        self.opponentInput1Label.setGeometry(QtCore.QRect(2, 0, 41, 81))
-        self.opponentInput1Label.setStyleSheet("")
-        self.opponentInput1Label.setText("")
-        self.opponentInput1Label.setAlignment(QtCore.Qt.AlignCenter)
-        self.opponentInput1Label.setObjectName("opponentInput1Label")
-        self.opponentInputContainer2 = QtWidgets.QWidget(self.centralwidget)
-        self.opponentInputContainer2.setGeometry(QtCore.QRect(680, 85, 45, 80))
-        self.opponentInputContainer2.setStyleSheet("#opponentInputContainer2{\n"
-"    background-color: #fff;\n"
-"    padding: 15px 25px;\n"
-"      border: 1px solid black;\n"
-"      border-radius: 10px;\n"
-"}\n"
-"")
-        self.opponentInputContainer2.setObjectName("opponentInputContainer2")
-        self.opponentInput2Label = QtWidgets.QLabel(self.opponentInputContainer2)
-        self.opponentInput2Label.setGeometry(QtCore.QRect(2, 0, 41, 81))
-        self.opponentInput2Label.setStyleSheet("")
-        self.opponentInput2Label.setText("")
-        self.opponentInput2Label.setAlignment(QtCore.Qt.AlignCenter)
-        self.opponentInput2Label.setObjectName("opponentInput2Label")
-        self.opponentInputContainer3 = QtWidgets.QWidget(self.centralwidget)
-        self.opponentInputContainer3.setGeometry(QtCore.QRect(740, 85, 45, 80))
-        self.opponentInputContainer3.setStyleSheet("#opponentInputContainer3{\n"
-"    background-color: #fff;\n"
-"    padding: 15px 25px;\n"
-"      border: 1px solid black;\n"
-"      border-radius: 10px;\n"
-"}\n"
-"")
-        self.opponentInputContainer3.setObjectName("opponentInputContainer3")
-        self.opponentInput3Label = QtWidgets.QLabel(self.opponentInputContainer3)
-        self.opponentInput3Label.setGeometry(QtCore.QRect(2, 0, 41, 81))
-        self.opponentInput3Label.setStyleSheet("")
-        self.opponentInput3Label.setText("")
-        self.opponentInput3Label.setAlignment(QtCore.Qt.AlignCenter)
-        self.opponentInput3Label.setObjectName("opponentInput3Label")
-        self.opponentInputContainer4 = QtWidgets.QWidget(self.centralwidget)
-        self.opponentInputContainer4.setGeometry(QtCore.QRect(800, 85, 45, 80))
-        self.opponentInputContainer4.setStyleSheet("#opponentInputContainer4{\n"
-"    background-color: #fff;\n"
-"    padding: 15px 25px;\n"
-"      border: 1px solid black;\n"
-"      border-radius: 10px;\n"
-"}\n"
-"")
-        self.opponentInputContainer4.setObjectName("opponentInputContainer4")
-        self.opponentInput4Label = QtWidgets.QLabel(self.opponentInputContainer4)
-        self.opponentInput4Label.setGeometry(QtCore.QRect(2, 0, 41, 81))
-        self.opponentInput4Label.setStyleSheet("")
-        self.opponentInput4Label.setText("")
-        self.opponentInput4Label.setAlignment(QtCore.Qt.AlignCenter)
-        self.opponentInput4Label.setObjectName("opponentInput4Label")
-        self.sumTitleLabel_2 = QtWidgets.QLabel(self.centralwidget)
-        self.sumTitleLabel_2.setGeometry(QtCore.QRect(560, 40, 281, 41))
-        self.sumTitleLabel_2.setAlignment(QtCore.Qt.AlignCenter)
-        self.sumTitleLabel_2.setObjectName("sumTitleLabel_2")
         self.slotN = QtWidgets.QPushButton(self.centralwidget)
         self.slotN.setEnabled(False)
         self.slotN.setGeometry(QtCore.QRect(428, 299, 31, 31))
+        self.slotN.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.slotN.setStyleSheet("#slot {\n"
 "    background-color: #fff;\n"
 "      border: 1px solid black;\n"
@@ -328,10 +258,12 @@ class Ui_MainWindow(object):
 "}\n"
 "")
         self.slotN.setText("")
+        self.slotN.setProperty("value", "")
         self.slotN.setObjectName("slotN")
         self.slotE = QtWidgets.QPushButton(self.centralwidget)
         self.slotE.setEnabled(False)
         self.slotE.setGeometry(QtCore.QRect(474, 341, 31, 31))
+        self.slotE.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.slotE.setStyleSheet("#slot {\n"
 "    background-color: #fff;\n"
 "      border: 1px solid black;\n"
@@ -339,10 +271,12 @@ class Ui_MainWindow(object):
 "}\n"
 "")
         self.slotE.setText("")
+        self.slotE.setProperty("value", "")
         self.slotE.setObjectName("slotE")
         self.slotS = QtWidgets.QPushButton(self.centralwidget)
         self.slotS.setEnabled(False)
         self.slotS.setGeometry(QtCore.QRect(428, 383, 31, 31))
+        self.slotS.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.slotS.setStyleSheet("#slot {\n"
 "    background-color: #fff;\n"
 "      border: 1px solid black;\n"
@@ -350,10 +284,12 @@ class Ui_MainWindow(object):
 "}\n"
 "")
         self.slotS.setText("")
+        self.slotS.setProperty("value", "")
         self.slotS.setObjectName("slotS")
         self.slotW = QtWidgets.QPushButton(self.centralwidget)
         self.slotW.setEnabled(False)
         self.slotW.setGeometry(QtCore.QRect(382, 341, 31, 31))
+        self.slotW.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.slotW.setStyleSheet("#slot {\n"
 "    background-color: #fff;\n"
 "      border: 1px solid black;\n"
@@ -361,10 +297,12 @@ class Ui_MainWindow(object):
 "}\n"
 "")
         self.slotW.setText("")
+        self.slotW.setProperty("value", "")
         self.slotW.setObjectName("slotW")
         self.slotC = QtWidgets.QPushButton(self.centralwidget)
         self.slotC.setEnabled(False)
         self.slotC.setGeometry(QtCore.QRect(428, 341, 31, 31))
+        self.slotC.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.slotC.setStyleSheet("#slot {\n"
 "    background-color: #fff;\n"
 "      border: 1px solid black;\n"
@@ -372,6 +310,7 @@ class Ui_MainWindow(object):
 "}\n"
 "")
         self.slotC.setText("")
+        self.slotC.setProperty("value", "")
         self.slotC.setObjectName("slotC")
         self.gameNameLabel.raise_()
         self.playerCup.raise_()
@@ -391,12 +330,6 @@ class Ui_MainWindow(object):
         self.sumContainer.raise_()
         self.msgTitle.raise_()
         self.msgContainer.raise_()
-        self.opponentInputContainer0.raise_()
-        self.opponentInputContainer1.raise_()
-        self.opponentInputContainer2.raise_()
-        self.opponentInputContainer3.raise_()
-        self.opponentInputContainer4.raise_()
-        self.sumTitleLabel_2.raise_()
         self.slotN.raise_()
         self.slotE.raise_()
         self.slotS.raise_()
@@ -425,5 +358,4 @@ class Ui_MainWindow(object):
         self.input3.setInputMask(_translate("MainWindow", "0"))
         self.input4.setInputMask(_translate("MainWindow", "0"))
         self.msgTitle.setText(_translate("MainWindow", "Mensagens"))
-        self.sumTitleLabel_2.setText(_translate("MainWindow", "Última Aposta"))
 from .images import Config_rc

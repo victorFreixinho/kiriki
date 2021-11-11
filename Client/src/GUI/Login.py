@@ -15,7 +15,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.setEnabled(True)
-        MainWindow.resize(655, 416)
+        MainWindow.resize(900, 500)
         MainWindow.setStyleSheet("QMainWindow{\n"
 "    background-color: #c7c7c7;\n"
 "}\n"
@@ -30,7 +30,7 @@ class Ui_MainWindow(object):
 "}")
         self.centralwidget.setObjectName("centralwidget")
         self.yellowContainer = QtWidgets.QWidget(self.centralwidget)
-        self.yellowContainer.setGeometry(QtCore.QRect(199, 9, 281, 401))
+        self.yellowContainer.setGeometry(QtCore.QRect(320, 40, 281, 401))
         self.yellowContainer.setStyleSheet("#yellowContainer {\n"
 "    background-color: #ffc000;\n"
 "    padding: 15px 25px;\n"
