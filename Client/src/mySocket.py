@@ -3,7 +3,7 @@ import socket
 
 class MySocket:
     def __init__(self):
-        self.HOST = '192.168.15.37'
+        self.HOST = '192.168.0.13'
         self.PORT = 5000
         self.tcp = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.open_connection()
