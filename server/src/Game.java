@@ -8,7 +8,9 @@ import java.util.List;
 public class Game {
 
     private Client player1;
+    private List<Integer> dices1;
     private Client player2;
+    private List<Integer> dices2;
     private boolean isGameInProgress;
 
     Game(Client player1) {
@@ -52,6 +54,8 @@ public class Game {
 
     public void sendGameConfig(String header) {
         Client firstPlayer = sortFirstPlayer();
+        dices1 = sortInitialDices();
+        dices2 = sortInitialDices();
         sendGameConfigTo(player1, header, player1.equals(firstPlayer));
         sendGameConfigTo(player2, header, !player1.equals(firstPlayer));
     }
@@ -60,9 +64,11 @@ public class Game {
         try {
             PrintWriter clientWriter = new PrintWriter(player.getClientSocket().getOutputStream());
             JSONObject jsonObj = new JSONObject();
-            jsonObj.put("opponentName", player.equals(player1) ? player2.getClientName() : player1.getClientName());
+            boolean isPlayer1 = player.equals(player1);
+            jsonObj.put("opponentName", isPlayer1 ? player2.getClientName() : player1.getClientName());
+            jsonObj.put("opponentSum", isPlayer1 ? getDicesSum(dices2) : getDicesSum(dices1));
             jsonObj.put("isFirstPlayer", isFirstPlayer);
-            jsonObj.put("initialDices", getInitialDices());
+            jsonObj.put("initialDices", isPlayer1 ? dices1 : dices2);
             clientWriter.println(header);
             clientWriter.println(jsonObj.toJSONString());
             System.out.println("Sending initial configs to client...");
@@ -76,11 +82,19 @@ public class Game {
         }
     }
 
-    private List<Integer> getInitialDices() {
+    private List<Integer> sortInitialDices() {
         List<Integer> arr = new ArrayList<>();
         for(int i=1; i<=5; i++) {
             arr.add((int) Math.floor(6*Math.random() + 1));
         }
         return arr;
+    }
+
+    private int getDicesSum(List<Integer> dices) {
+        int sum = 0;
+        for(int d : dices) {
+            sum += d;
+        }
+        return sum;
     }
 }
