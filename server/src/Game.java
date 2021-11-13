@@ -188,6 +188,8 @@ public class Game {
                 "finish game message"
         );
         setGameInProgress(false);
+        player1 = null;
+        player2 = null;
     }
 
     private void sendMessage(Client player, String header, String message, String messageDescription) {
