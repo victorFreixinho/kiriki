@@ -2,9 +2,9 @@ import socket
 
 
 class MySocket:
-    def __init__(self):
-        self.HOST = '192.168.0.13'
-        self.PORT = 5000
+    def __init__(self, Host, Port):
+        self.HOST = Host
+        self.PORT = Port
         self.tcp = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.open_connection()
 
@@ -19,8 +19,5 @@ class MySocket:
         msg = self.tcp.recv(1024)
         return msg.decode()
 
-
     def close_connection(self):
         self.tcp.close()
-
-# https://www.tutorialspoint.com/python_penetration_testing/python_penetration_testing_socket_and_methods.htm
