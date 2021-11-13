@@ -5,7 +5,7 @@ from Session import Session
 from ListenThread import ListenThread
 from LoginWindow import LoginWindow
 from GameWindow import GameWindow
-from PyQt5.QtWidgets import QApplication, QStackedWidget
+from PyQt5.QtWidgets import QStackedWidget
 
 # Change this params to your server settings
 host = '192.168.0.13'

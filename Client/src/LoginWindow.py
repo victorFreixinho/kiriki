@@ -1,4 +1,4 @@
-from routes import Routes
+from Routes import Routes
 from GUI.Login import Ui_MainWindow as LoginUiWindow
 from PyQt5.QtWidgets import QMainWindow
 

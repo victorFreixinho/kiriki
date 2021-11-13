@@ -1,4 +1,4 @@
-from routes import Routes
+from Routes import Routes
 from GUI.Game import Ui_MainWindow as GameUiWindow
 from PyQt5.QtWidgets import QMainWindow
 from PyQt5.QtGui import QPixmap
