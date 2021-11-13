@@ -19,3 +19,5 @@ class LoginWindow(QMainWindow, LoginUiWindow):
         self.session.userName = userName
         msg = routes.formatLogin(userName)
         self.socket.dispatch(msg)
+
+

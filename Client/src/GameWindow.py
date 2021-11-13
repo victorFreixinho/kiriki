@@ -1,3 +1,4 @@
+import time
 from Routes import Routes
 from GUI.Game import Ui_MainWindow as GameUiWindow
 from PyQt5.QtWidgets import QMainWindow
@@ -98,6 +99,9 @@ class GameWindow(QMainWindow, GameUiWindow):
     def endMatch(self, win: bool):
         if win:
             self.msgLabel.setText("Você Venceu!")
+
         else:
             self.msgLabel.setText("Você Perdeu!")
+
+
 
