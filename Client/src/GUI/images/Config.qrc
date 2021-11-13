@@ -1,0 +1,14 @@
+<RCC>
+  <qresource prefix="newPrefix">
+    <file>Dice1.png</file>
+    <file>Dice2.png</file>
+    <file>Dice3.png</file>
+    <file>Dice4.png</file>
+    <file>Dice5.png</file>
+    <file>Dice6.png</file>
+    <file>DiceSlot.png</file>
+    <file>opponentCup.png</file>
+    <file>playerCup.png</file>
+    <file>playerCupFull.png</file>
+  </qresource>
+</RCC>

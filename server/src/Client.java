@@ -1,6 +1,9 @@
 import java.net.Socket;
 
 public class Client {
+
+    private static int count = 0;
+    private int id;
     private Socket clientSocket;
     private String clientName;
 
@@ -9,10 +12,13 @@ public class Client {
     Client(Socket clientSocket) {
         this.clientSocket = clientSocket;
         this.clientName = "";
+        this.id = ++count;
     }
+
     Client(Socket clientSocket, String clientName) {
         this.clientSocket = clientSocket;
         this.clientName = clientName;
+        this.id = ++count;
     }
 
     public Socket getClientSocket() {
@@ -21,6 +27,10 @@ public class Client {
 
     public String getClientName() {
         return clientName;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public void setClientName(String clientName) {

@@ -2,24 +2,37 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
+import org.json.simple.*;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 public class Server {
 
-    private static volatile Server serverSingleton;
+    public static final String HEADER_GAME_CONFIG = "/login";
+    public static final String HEADER_PLAYER_GUESS = "/guess";
+    public static final String HEADER_START_ROUND = "/startRound";
+    public static final String HEADER_FINISH_GAME = "/finish";
+    public static final String HEADER_EXCLUDE_DICE = "/excludeDice";
+
     private static final int PORT = 5000;
     private static final int MAX_THREADS = 25;
+    private static volatile Server serverSingleton;
     private ServerSocket serverSocket;
-    private List<Client> clientsList;
+//    private List<Client> clientsList;
+    private Map<Integer, Game> clientGameMap;
     private ExecutorService executor;
 
     private Server() {
         try {
             this.serverSocket = new ServerSocket(PORT);
-            this.clientsList = new ArrayList<>();
+//            this.clientsList = new ArrayList<>();
+            this.clientGameMap = new HashMap<>();
             this.executor = Executors.newFixedThreadPool(MAX_THREADS);
         } catch (IOException e) {
             System.out.println("Error on server socket initialization:");
@@ -45,7 +58,6 @@ public class Server {
     
     public void startServer() {
         Server server = Server.getServer();
-        // Cast the object to its class type
         ThreadPoolExecutor pool = (ThreadPoolExecutor) executor;
         System.out.println("Server Started with success!");
         while(true) {
@@ -53,7 +65,7 @@ public class Server {
             try {
                 Socket clientSocket = server.serverSocket.accept();
                 Client client = new Client(clientSocket);
-                clientsList.add(client);
+//                clientsList.add(client);
                 System.out.println("New client connected.");
                 pool.submit(
                         new ClientListenerTask(
@@ -71,8 +83,63 @@ public class Server {
         }
     }
 
+    private void addClientToGame(Client client) {
+        if(clientGameMap.get(client.getId()) == null){
+            for(Game game: clientGameMap.values()) {
+                if(!game.isGameInProgress()) {
+                    game.addPlayer(client);
+                    clientGameMap.put(client.getId(), game);
+                    game.sendGameConfig(HEADER_GAME_CONFIG);
+                    return;
+                }
+            }
+            clientGameMap.put(client.getId(), new Game(client));
+        }
+    }
+
     private void handleClientMessage(Client client, String header, String message) {
-        System.out.println("Header: " + header);
-        System.out.println("Message: " + message);
+        switch(header) {
+            case HEADER_GAME_CONFIG:
+                try {
+                    JSONParser parser = new JSONParser();
+                    JSONObject obj = (JSONObject) parser.parse(message);
+                    System.out.println("Received client name: " + obj.get("userName"));
+                    client.setClientName((String) obj.get("userName"));
+                } catch (ParseException e) {
+                    System.out.println("Error Parsing JSON object, to get client name.");
+                    e.printStackTrace();
+                }
+                addClientToGame(client);
+                break;
+            case HEADER_PLAYER_GUESS:
+                try {
+                    JSONParser parser = new JSONParser();
+                    JSONObject obj = (JSONObject) parser.parse(message);
+                    ArrayList<Integer> guess = (ArrayList<Integer>) obj.get("guess");
+                    System.out.println("Received client guess: " + guess.toString());
+                    Game game = clientGameMap.get(client.getId());
+                    if(game != null) {
+                        game.handlePlayerGuess(client, guess);
+                    }
+                } catch (ParseException e) {
+                    System.out.println("Error Parsing JSON object, to get client guess.");
+                    e.printStackTrace();
+                }
+                break;
+            case HEADER_EXCLUDE_DICE:
+                try {
+                    JSONParser parser = new JSONParser();
+                    JSONObject obj = (JSONObject) parser.parse(message);
+                    clientGameMap.get(client.getId()).handleExcludePlayerDice(client, (int) obj.get("value"));
+                } catch (ParseException e) {
+                    System.out.println("Error Parsing JSON object, to get client guess.");
+                    e.printStackTrace();
+                }
+                break;
+            default:
+                System.out.println("Incorrect Client Message header.");
+                break;
+
+        }
     }
 }
