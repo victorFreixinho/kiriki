@@ -115,10 +115,11 @@ public class Server {
                 try {
                     JSONParser parser = new JSONParser();
                     JSONObject obj = (JSONObject) parser.parse(message);
-                    ArrayList<Integer> guess = (ArrayList<Integer>) obj.get("guess");
+                    ArrayList<Long> guess = (ArrayList<Long>) obj.get("guess");
                     System.out.println("Received client guess: " + guess.toString());
                     Game game = clientGameMap.get(client.getId());
                     if(game != null) {
+                        System.out.println("ta caindo aqui?");
                         game.handlePlayerGuess(client, guess);
                     }
                 } catch (ParseException e) {
@@ -130,7 +131,7 @@ public class Server {
                 try {
                     JSONParser parser = new JSONParser();
                     JSONObject obj = (JSONObject) parser.parse(message);
-                    clientGameMap.get(client.getId()).handleExcludePlayerDice(client, (int) obj.get("value"));
+                    clientGameMap.get(client.getId()).handleExcludePlayerDice(client, (long) obj.get("value"));
                 } catch (ParseException e) {
                     System.out.println("Error Parsing JSON object, to get client guess.");
                     e.printStackTrace();

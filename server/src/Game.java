@@ -90,18 +90,24 @@ public class Game {
         return sum;
     }
 
-    public void handlePlayerGuess(Client player, ArrayList<Integer> guess) {
+    public void handlePlayerGuess(Client player, ArrayList<Long> guess) {
+        if(!isGameInProgress) return;
         boolean isPlayer1 = player.getId() == player1.getId();
-        ArrayList<Integer> opponentDicesCopy = (ArrayList<Integer>) (isPlayer1 ? dices2 : dices1);
+        ArrayList<Integer> opponentDicesCopy = new ArrayList<>((isPlayer1 ? dices2 : dices1));
         int points = 0;
-        for(int i : guess) {
-            if(opponentDicesCopy.contains(i)) {
-                opponentDicesCopy.remove(i);
+
+        for(long i : guess) {
+
+            if(opponentDicesCopy.contains((int) i)) {
+                opponentDicesCopy.remove((Integer) (int) i);
                 points++;
             }
         }
-
+        System.out.println("op:"+opponentDicesCopy);
+        System.out.printf("Guess: "+guess);
+        System.out.println("Points: "+points);
         if(guess.size() == points) {
+            System.out.println("Dices1: "+(isPlayer1 ? dices1.toString() : dices2.toString()));
             sendFinishGameMessage(isPlayer1);
         } else {
             if(isPlayer1 ? dices1.size()>2 : dices2.size()>2) {
@@ -112,6 +118,7 @@ public class Game {
                     sendWrongGuessMessage(isPlayer1, true);
                 }
             } else {
+                System.out.println("Dices2: "+(isPlayer1 ? dices1.toString() : dices2.toString()));
                 sendFinishGameMessage(!isPlayer1);
             }
         }
@@ -120,6 +127,7 @@ public class Game {
 //    /guess
 //    {"loseDice": true}
     private void sendWrongGuessMessage(boolean isPlayer1, boolean loseDice) {
+        if(!isGameInProgress) return;
         JSONObject jsonObj = new JSONObject();
         jsonObj.put("loseDice", loseDice);
 
@@ -131,12 +139,13 @@ public class Game {
         );
     }
 
-    public void handleExcludePlayerDice(Client player, int value) {
+    public void handleExcludePlayerDice(Client player, long value) {
+        if(!isGameInProgress) return;
         boolean isPlayer1 = player1.getId() == player.getId();
-        if(isPlayer1 && dices1.contains(value)) {
-            dices1.remove(value);
-        } else if (!isPlayer1 && dices2.contains(value)) {
-            dices2.remove(value);
+        if(isPlayer1 && dices1.contains((int)value)) {
+            dices1.remove((Integer) (int) value);
+        } else if (!isPlayer1 && dices2.contains((int)value)) {
+            dices2.remove((Integer) (int) value);
         }
         sendStartRoundMessage(!isPlayer1, true);
     }
@@ -144,6 +153,7 @@ public class Game {
 //    /startRound
 //    {"loseDice": true, "sum": 13}
     private void sendStartRoundMessage(boolean isPlayer1, boolean loseDice) {
+        if(!isGameInProgress) return;
         JSONObject jsonObj = new JSONObject();
         jsonObj.put("loseDice", loseDice);
         jsonObj.put("sum", getDicesSum(isPlayer1 ? dices2 : dices1));
@@ -177,6 +187,7 @@ public class Game {
                 !isPlayer1Winner ? winnerJson.toJSONString() : loserJson.toJSONString(),
                 "finish game message"
         );
+        setGameInProgress(false);
     }
 
     private void sendMessage(Client player, String header, String message, String messageDescription) {
