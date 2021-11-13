@@ -1,6 +1,6 @@
 import json
 from threading import Thread
-from routes import Routes
+from Routes import Routes
 
 class ListenThread(Thread):
     def __init__(self, socket, widget, gameWindow):
