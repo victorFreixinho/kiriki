@@ -8,7 +8,7 @@ from GameWindow import GameWindow
 from PyQt5.QtWidgets import QStackedWidget
 
 # Change this params to your server settings
-host = '192.168.0.13'
+host = '192.168.0.11'
 port = 5000
 
 if __name__ == '__main__':

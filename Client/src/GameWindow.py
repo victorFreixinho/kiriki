@@ -66,12 +66,12 @@ class GameWindow(QMainWindow, GameUiWindow):
                 return
 
         guessInputs = [int(el.text()) if el else -1 for el in self.inputs]
-        self.sendBtn.setEnabled(False)
         for i in range(len(guessInputs)):
             if guessInputs[i] == 0 or guessInputs[i] < 1 or guessInputs[i] > 6:
                 self.msgLabel.setText("Digite apenas números entre 1 e 6")
                 return
 
+        self.sendBtn.setEnabled(False)
         self.msgLabel.setText("Aguarde a vez do outro jogador.")
         msg = self.routes.formatGuessing(guessInputs)
         self.socket.dispatch(msg)
