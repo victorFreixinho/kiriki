@@ -11,6 +11,12 @@ from PyQt5.QtWidgets import QStackedWidget
 host = '192.168.0.13'
 port = 5000
 
+#TODO:
+# Create a window where the user can give the host's Ip and the server's port in an input.
+# Solve the dice removal bug: whe are able to click only in the blank space of the dice.
+# Solve the send button bug: the button becomes green only when the cursor pass through it.
+# Create the play again option.
+
 if __name__ == '__main__':
     mySocket = MySocket(host, port)
     qt = App(sys.argv, mySocket)
