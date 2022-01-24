@@ -2,14 +2,16 @@
 
 This is an IntelliJ java project.
 
-> We chose not to define the project's JDK, so users can define it themselves.
+## Defining the SDK Project
 
-## Defining the JDK Project
+(Recommended SDK version: 8 or later)
 
-- Open the **server** directory in IntelliJ.
+- Open the `server` directory in IntelliJ.
 - Go to `server/src/Main.java`, click setup SDK and choose your SDK version.
 
 ![setup SDK image](./readme_imgs/setupSDK.png)
+
+- Alternatively, you can setup SDK by going to `File > Project Structure > Project SDK` and choosing an option.
 
 ## Running the project
 
