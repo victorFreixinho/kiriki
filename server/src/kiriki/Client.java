@@ -1,3 +1,5 @@
+package kiriki;
+
 import java.net.Socket;
 
 public class Client {
@@ -34,6 +36,6 @@ public class Client {
     }
 
     public void setClientName(String clientName) {
-        this.clientName = clientName;
+        this.clientName = (clientName == null || clientName.isBlank()) ? "" : clientName;
     }
 }
